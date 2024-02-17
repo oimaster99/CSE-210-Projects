@@ -18,7 +18,9 @@ class Program
                 quit = true;
             }
             Console.Clear();
-            scriptr.HideWords();
+            if (scriptr.HideWords() == false) {
+                quit = true;
+            }
             //Word testWord = new Word("Attention my fellow Americans. Today is a good day to get ice cream.");
             //testWord.DisplayWord();
         }
