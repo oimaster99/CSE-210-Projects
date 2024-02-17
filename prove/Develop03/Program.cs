@@ -1,9 +1,26 @@
 using System;
+using System.Net;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop03 World!");
+        bool quit = false;
+        Scripture scriptr = new Scripture();
+
+        while (!quit) {
+
+            scriptr.ShowScripture();
+            Console.WriteLine("\nPress enter to continue or type 'quit' to finish: \n");
+            string response = Console.ReadLine();
+
+            if (response == "quit") {
+                quit = true;
+            }
+            Console.Clear();
+            scriptr.HideWords();
+            //Word testWord = new Word("Attention my fellow Americans. Today is a good day to get ice cream.");
+            //testWord.DisplayWord();
+        }
     }
 }
