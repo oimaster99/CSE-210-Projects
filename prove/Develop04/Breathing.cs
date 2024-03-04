@@ -1,12 +1,11 @@
 using System.Diagnostics;
 
-class Breathing {
+class Breathing : Activity{
 
     private int _breathIn = 2;
     private int _breathOut = 3;
     private int _breathInInc = 2;
     private int _breathOutInc = 3;
-    private Activity _anim = new Activity();
 
     public void BreathAct() {
         Console.Clear();
@@ -14,19 +13,19 @@ class Breathing {
         Console.WriteLine("This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing");
         Console.Write("\nHow long, in seconds, would you like for your session?: ");
 
-        int seconds = _anim.SetDuration();
+        int seconds = SetDuration();
         Console.Clear();
 
         Console.WriteLine("Get Ready...");
-        _anim.animation(5);
+        animation(5);
         Console.WriteLine("\n");
         BreathTime(seconds);
 
         Console.WriteLine("\nWell done!!");
-        _anim.animation(5);
+        animation(5);
 
         Console.WriteLine($"You have completed another {seconds} seconds of the Breathing Activity.");
-        _anim.animation(5);
+        animation(5);
     }
 
     private void BreathTime(int time) {

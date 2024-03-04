@@ -1,11 +1,10 @@
 using System.Formats.Asn1;
 using System.Security.Cryptography;
 
-class Reflection {
+class Reflection : Activity{
 
     private List<string> _prompts;
     private List<string> _questions;
-    private Activity _anim = new Activity();
 
     public Reflection() {
         this._prompts = new List<string>() {
@@ -71,7 +70,7 @@ class Reflection {
             }
 
             Console.WriteLine($"> {_questions[rndQuestion]}");
-            _anim.animation(5);
+            animation(5);
 
         }
     }
@@ -82,22 +81,23 @@ class Reflection {
         Console.WriteLine(@"This activity will help you reflect on times in your life when you have shown strength and resilience.
         This will help you recognize the power you have and how you can use it in other aspects of your life.");
 
-        int seconds = _anim.SetDuration();
+        int seconds = SetDuration();
 
+        Console.Clear();
         Console.WriteLine("Get ready...");
-        _anim.animation(5);
+        animation(5);
         GetRndPrompt();
         Console.WriteLine("Now ponder on each of the following questions as they are related to this experience.");
         Console.Write("You may begin in: ");
-        _anim.Countdown(5);
+        Countdown(5);
 
         Console.Clear();
 
         GetRndQuestions(seconds);
         Console.WriteLine("Well done!!\n");
-        _anim.animation(5);
+        animation(5);
         Console.WriteLine($"You have completed another {seconds} seconds of the Reflecting Activity");
-        _anim.animation(5);
+        animation(5);
 
     }
 

@@ -1,10 +1,9 @@
 using System.Net;
 
-class Listing {
+class Listing : Activity{
 
     private List<string> _prompts;
     private List<string> _userAnswers;
-    private Activity _anim = new Activity();
 
     public Listing() {
         this._prompts = new List<string>() {
@@ -41,25 +40,25 @@ class Listing {
         Console.WriteLine("Welcome to the Listing Activity.\n");
         Console.WriteLine("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
 
-        int seconds = _anim.SetDuration();
+        int seconds = SetDuration();
         Console.Clear();
 
         Console.WriteLine("Get ready...");
-        _anim.animation(5);
+        animation(5);
         Console.WriteLine("\nList as many responses as you can to the following prompt:");
         GetRndPrompt();
 
         Console.Write("You may begin in: ");
-        _anim.Countdown(5);
+        Countdown(5);
         Console.WriteLine("\n");
         GetInput(seconds);
 
         Console.WriteLine($"You listed {_userAnswers.Count} items!\n");
 
         Console.WriteLine("Well done!!");
-        _anim.animation(5);
+        animation(5);
         Console.WriteLine($"You have completed another {seconds} seconds of the Listing Activity.");
-        _anim.animation(5);
+        animation(5);
     }
 
 }
