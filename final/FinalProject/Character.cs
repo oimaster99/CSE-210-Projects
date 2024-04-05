@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 public abstract class Character {
 
@@ -11,6 +12,8 @@ public abstract class Character {
     protected int level;
     protected string trait;
     protected bool isDead;
+    protected int tempDefense = 0;
+
 
     public Character() {
         name = "NULL";
@@ -52,6 +55,10 @@ public abstract class Character {
         return name;
     }
 
+    public string GetTrait() {
+        return trait;
+    }
+
     public double GetHealth() {
         return health;
     }
@@ -68,6 +75,10 @@ public abstract class Character {
         return defense;
     }
 
+    public int GetTempDefense() {
+        return tempDefense;
+    }
+
     public int GetSpeed() {
         return speed;
     }
@@ -82,6 +93,35 @@ public abstract class Character {
 
     public virtual void InitiateBattle() {
         Console.WriteLine(":)");
+    }
+
+    public void equipItem(Object obj) {
+        int oAtk = obj.GetAtk();
+        int oDef = obj.GetDef();
+        attack += oAtk;
+        defense += oDef;
+    }
+
+    public void TakeDamage(double dmg) {
+        Console.WriteLine("Taking Damage!");
+        health -= dmg;
+        if (health <= 0) {
+            health = 0;
+            isDead = true;
+        }
+        Console.WriteLine($"health is {health}");
+        tempDefense = 0;
+    }
+
+    public void HealDamage(double hp) {
+        health += hp;
+        if (health > maxHealth) {
+            health = maxHealth;
+        }
+    }
+
+    public void Defend() {
+        tempDefense = defense;
     }
 
 }

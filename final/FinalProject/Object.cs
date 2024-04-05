@@ -4,6 +4,7 @@ public abstract class Object {
     protected string type;
     protected int attack;
     protected int defense;
+    protected int speed;
     protected bool canEquip;
     protected bool isArmor;
     protected int value;
@@ -61,5 +62,6 @@ public abstract class Object {
     public bool checkArmor() {
         return isArmor;
     }
+    
 
 }
