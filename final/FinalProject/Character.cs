@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection.Metadata.Ecma335;
 
 public abstract class Character {
 
@@ -13,6 +14,12 @@ public abstract class Character {
     protected string trait;
     protected bool isDead;
     protected int tempDefense = 0;
+    protected Object headEquip;
+    protected Object bodyEquip;
+    protected Object legEquip;
+    protected Object armEquip;
+    protected Object rHandEquip;
+    protected Object lHandEquip;
 
 
     public Character() {
@@ -91,25 +98,50 @@ public abstract class Character {
         return isDead;
     }
 
+    public void SetDefending(bool d) {
+        if (!d) {
+            tempDefense = 0;
+        }
+    }
+
+    public void EquipHead(Object h) {
+        if (h.isEquip()) {
+            headEquip = h;
+            EquipItem(headEquip);
+        }
+        else {
+            Console.WriteLine("Item not Equippable.");
+        }
+
+    }
+
     public virtual void InitiateBattle() {
         Console.WriteLine(":)");
     }
 
-    public void equipItem(Object obj) {
+    public void EquipItem(Object obj) {
         int oAtk = obj.GetAtk();
         int oDef = obj.GetDef();
+        int oSpd = obj.GetSpd();
         attack += oAtk;
         defense += oDef;
+        speed += oSpd;
+    }
+
+    public void UnequipItem(Object obj) {
+        attack -= obj.GetAtk();
+        defense -= obj.GetDef();
+        speed -= obj.GetSpd();
     }
 
     public void TakeDamage(double dmg) {
-        Console.WriteLine("Taking Damage!");
+        //Console.WriteLine("Taking Damage!");
         health -= dmg;
         if (health <= 0) {
             health = 0;
             isDead = true;
         }
-        Console.WriteLine($"health is {health}");
+        //Console.WriteLine($"health is {health}");
         tempDefense = 0;
     }
 

@@ -8,6 +8,7 @@ public abstract class Object {
     protected bool canEquip;
     protected bool isArmor;
     protected int value;
+    protected bool equipped;
 
     public Object() {
         name = "NULL";
@@ -53,6 +54,10 @@ public abstract class Object {
 
     public int GetDef() {
         return defense;
+    }
+
+    public int GetSpd() {
+        return speed;
     }
 
     public bool isEquip() {

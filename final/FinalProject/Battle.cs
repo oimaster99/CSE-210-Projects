@@ -4,8 +4,6 @@ public class Battle {
     Player plr;
     Enemy enm;
     List<int> turnOrder;
-    int plrSPD;
-    int enmSPD;
     int enmDodgeChance;
     int plrDodgeChance;
     string enmName;
@@ -157,7 +155,9 @@ public class Battle {
 
         if (hitChance > enmDodgeChance) {
             Console.WriteLine("Player is attacking!");
-            enm.TakeDamage((plr.GetAttack() * 1.5) - (enm.GetDefense() + enm.GetTempDefense()));
+            double damage = (plr.GetAttack() * 1.5) - (enm.GetDefense() + enm.GetTempDefense());
+            enm.TakeDamage(damage);
+            Console.WriteLine($"Hit {enm} for {damage} damage!");
             Console.ReadKey();
         }
         else {
@@ -167,7 +167,7 @@ public class Battle {
     }
 
     private void EnemyAttack() {
-        plrDodgeChance = (enmSPD / plrSPD) * 5;
+        plrDodgeChance = (enm.GetSpeed() / plr.GetSpeed()) * 5;
 
         Console.WriteLine("Enemy is Attacking!");
 
@@ -194,7 +194,8 @@ public class Battle {
     }
 
     private bool EnemyRun() {
-        int enmRunChance = (enmSPD * 100) / (plrSPD * 40);
+        enm.SetDefending(false);
+        int enmRunChance = (enm.GetSpeed() * 100) / (plr.GetSpeed() * 40);
 
         int enmRun = rng.Next(0, 100);
 
@@ -210,7 +211,8 @@ public class Battle {
     }
 
     private bool PlayerRun() {
-        int plrRunChance = (plrSPD * 100) / (enmSPD * 20);
+        plr.SetDefending(false);
+        int plrRunChance = (plr.GetSpeed() * 100) / (enm.GetSpeed() * 20);
 
         int plrRun = rng.Next(0, 100);
 
